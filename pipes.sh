@@ -1,6 +1,7 @@
 #!/bin/bash
-# Fork !BombzZyCAk would like to know the original maker of this script
-trap 'tput cnorm;clear;exit' INT HUP QUIT ABRT ARLM TERM CHLD 
+# This script is currently in the Public Domain
+
+trap 'tput cnorm;clear;exit' INT HUP QUIT ABRT TERM CHLD
 
 declare -i f=75 s=12 r=3000 t=0 c=1 n=0 l=0
 declare -ir w=$(tput cols) h=$(tput lines)
@@ -17,11 +18,11 @@ case $arg in
     s) ((s=($OPTARG>4 && $OPTARG<16 )?$OPTARG:$s));;
     r) ((r=($OPTARG>0)?$OPTARG:$r));;
     h) echo -e "Usage: pipes [OPTION]..."
-        echo -e "Animated pipes terminal screensaver.\n"
-        echo -e " -f [20-100]\tframerate (D=75)."
-        echo -e " -s [5-15]\tprobability of a straight fitting (D=12)."
-        echo -e " -r LIMIT\treset after x characters (D=3000)."
-        echo -e " -h\t\thelp (this screen).\n"
+        echo -e "Creates an animation similar to the old \"pipes\" screensaver.\n"
+        echo -e " -f [20-100]\tframerate (Default 75)."
+        echo -e " -s [5-15]\tprobability of a straight fitting (Default 12)."
+        echo -e " -r LIMIT\treset after x characters (Default 3000)."
+        echo -e " -h\t\thelp (This screen).\n"
         exit 0;;
     esac
 done
