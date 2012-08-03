@@ -1,7 +1,12 @@
 #!/bin/bash
 # This script is currently in the Public Domain
 
-trap 'tput cnorm;clear;exit' INT HUP QUIT ABRT TERM CHLD
+# On ^C, bash may give an malloc/free error
+# I don't think this is an error that can be fixed easily
+# in this script, but if you managed to do so, help
+# would be nice. 
+
+trap 'tput cnorm;clear;exit' INT HUP QUIT ABRT TERM CHLD ALRM
 
 declare -i f=75 s=12 r=3000 t=0 c=1 n=0 l=0
 declare -ir w=$(tput cols) h=$(tput lines)
