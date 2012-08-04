@@ -41,7 +41,7 @@ while ! read -t0.0$((1000/$f)) -n1; do
     ((!($l%2))) && ((y+=($l==2)?1:-1))
 
     # Loop on edges (change color on loop):
-    ((c=($x>$w || $x<0 || $y>$h || $y<0)?($RANDOM%4):$c))
+    ((c=($x>$w || $x<0 || $y>$h || $y<0)?(($RANDOM%8)+($RANDOM%16)/32):$c))
     ((x=($x>$w)?0:(($x<0)?$w:$x)))
     ((y=($y>$h)?0:(($y<0)?$h:$y)))
 
