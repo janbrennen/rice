@@ -1,0 +1,24 @@
+pipes.sh
+	2012/08/04
+		- Apparently the first quick patch I made only allowed for a
+		 small number of colours. Yet another quick patch with an
+		 algorythm that's probably too complex for what it's supposed
+		 to do, but it works.
+	2012/08/03
+		- Original author of pipes.sh unknown. A quick patch was made to		 stop the terminal from being spammed 70% of the time when it
+		 ran.
+
+
+--
+
+
+256color.pl
+	2012/08/03
+		- Not my work, original Author's credits left in the heading 			 comments of the script. I will likely never make any
+		 modification to the script as there really is not anything			 that I see could be modified for it to do anyway.
+
+
+--
+
+
+Possibly more coming soon.
