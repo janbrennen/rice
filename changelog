@@ -20,5 +20,31 @@ pipes.sh
 
 --
 
+3spooky.lua
+	2012/10/31
+		- Not my work, and (as far as I know) originally posted on 
+		pastebin ( http://pastebin.com/brwgHnCq ) and linked to
+		on a thread on /g/
+
+--
+
+hax.exe (bash script - not an actual exe)
+	2012/10/31
+		- Silly shell script, "hacks" any valid domain you use it with.
+		Possibly more features to come soon, ability to "fail" instead
+		of "complete" some parts, be able to use another utility to
+		look up domains instead of parsing output from ``host'', etc.
+
+--
+
+hackertyper.sh
+	2012/10/31
+		- Another silly shell script, made to somewhat copy 
+		http://hackertyper.com/ The point of asking for a password for
+		the supposed "hacking" part didn't really make sense to me after
+		I wrote it but then I was too lazy to change it and turn that 
+		off by default / have a switch to turn it on / etc.
+
+--
 
 Possibly more coming soon.
