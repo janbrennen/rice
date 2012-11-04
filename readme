@@ -1,3 +1,5 @@
 Small dump of (usually) little fun/ricey terminal programs.
 Most of these programs will be scripts that at most you'll have to 
 chmod +x to run.
+Except so far for the .lua
+...You'll need to install lua for that.
