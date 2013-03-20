@@ -33,9 +33,8 @@ then
 exit 1
 fi
 
-function dot
-{ 
-	for i in $(seq 1 $1); do echo -n "."; sleep 0.04; done; echo -e '[\033[00;32mCOMPLETE\033[00;0m]';sleep 0.6
+dot () { 
+	for ((i = 0; i < $1; i++)); do echo -n "."; sleep 0.04; done; echo -e '[\033[00;32mCOMPLETE\033[00;0m]';sleep 0.6
 }
 echo -n "Enumerating Target"
 dot 40
