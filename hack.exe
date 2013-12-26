@@ -34,13 +34,13 @@ exit 1
 fi
 
 dot () { 
-	for ((i = 0; i < $1; i++)); do echo -n "."; sleep 0.04; done; echo -e '[\033[00;32mCOMPLETE\033[00;0m]';sleep 0.6
+	for ((i = 0; i < $1; i++)); do echo -n "."; sleep 0.02; done; echo -e '[\033[00;32mCOMPLETE\033[00;0m]';sleep 0.6
 }
 echo -n "Enumerating Target"
 dot 40
 echo -e " [+] Host: $1\n [+] IPv4: $(host $1 | head -n1 | egrep -o [0-9.]+$ )"
-echo -n "Opening SOCK5 ports on infected hosts"
-dot 21
+echo -n "Opening SOCKS5 ports on infected hosts"
+dot 20
 echo " [+] SSL entry point on 127.0.0.1:1337"
 echo -n "Chaining proxies"
 dot 42
