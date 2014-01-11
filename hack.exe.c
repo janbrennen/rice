@@ -205,6 +205,21 @@ void w00tw00t()
 	
 }
 
+void prompt(char* host)
+{
+	int c = '\n';	// lol wow literally the best fix ever
+	do {
+		if(c == '\n') {
+			printf("root@%s:/# ", host);
+		} else if(c == EOF) {
+			putchar('\n'); //"clean up"??
+			break;
+		}
+	} while((c = getchar()));
+}
+		
+		
+
 int main(int argc, char *argv[])
 {
 	if(argc != 2) {
@@ -231,6 +246,8 @@ int main(int argc, char *argv[])
 
 	printf("Sending PCAP datagrams for fragmentation overlap");
 	w00tw00t();
+
+	prompt(argv[1]);
 
 	return 0;
 }
