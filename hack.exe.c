@@ -163,6 +163,9 @@ void chainproxy()
 	char **cuntrees = countries;
 	char line[] = " [+] 0/7 proxies chained {   >   >   >   >   >   >   }";
 
+	dot(42);
+	printsuccess(SUCCESS);
+
 	while(i < strlen(line)) {
 		line[i++] = (*cuntrees)[c++];
 		if(c == 3) {
