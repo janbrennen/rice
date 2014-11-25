@@ -10,7 +10,7 @@ help() {
 	-s "succeed at hacking"
 	-g "be green"
 	-h "show this help..."
-	
+
 	Example: -l 20 -q 10 -f -g
 		each keypress will output 20 characters
 		this continues 10 times (10 keypresses before it ends)
@@ -36,7 +36,7 @@ while getopts "q:l:fshg" opt "$@"; do
 		 ;;
 		s)
 		 hack=1
-		 ;; 
+		 ;;
 		g)
 		 echo -e "\033[00;32m"
 		 ;;
@@ -349,13 +349,13 @@ ENDOFSTUFF`
 
 start=0
 length=$((`echo "$text" | wc -c` / ${len:=4}))
-for (( go = 1 ; go <= ${stopat:=length} ; go++ )) 
+for (( go = 1 ; go <= ${stopat:=length} ; go++ ))
         do echo -n "${text:$start:${len:=4}}"
         (( start = start + ${len:=4} ))
-        read -sN 1 inpoot
-	if [ "$inpoot" == '`' ]; then 
+        read -sn 1 inpoot
+	if [ "$inpoot" == '`' ]; then
 		end
-	else 
+	else
 		continue
 	fi
 done
