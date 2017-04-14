@@ -55,7 +55,8 @@ echo -en '\n['
 for i in $(seq 1 65); do echo -n "="; sleep 0.01; done
 echo -e '>]\n'
 sleep 0.5
-echo -n "root@$1:~# "
+# A shell you can actually interact with
+bash --rcfile <(echo "PS1='root@$1:~# '") -i
 sleep 5
 echo ""
 exit 0
