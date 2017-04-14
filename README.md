@@ -1,4 +1,7 @@
 
+# HOLY HECKO I FOUND THE ORIGINAL IMAGE I WAS PARODYING LOL
+![NOSTALGE](https://github.com/janbrennen/rice/blob/master/299377.png)
+
 A dump of scripts that are used for fun/rice, as seen on TV^H^H the internet
 
 ![Example](http://i.imgur.com/pQT0l.gif)
