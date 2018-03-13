@@ -4,34 +4,44 @@
 # On ^C, bash may give an malloc/free error
 # I don't think this is an error that can be fixed easily
 # in this script, but if you managed to do so, help
-# would be nice. 
+# would be nice.
 
 trap 'tput cnorm;clear;exit' INT HUP QUIT ABRT TERM CHLD ALRM
 
-declare -i f=75 s=12 r=3000 t=0 c=1 n=0 l=0
-declare -ir w=$(tput cols) h=$(tput lines)
-declare -i x=$((w/2)) y=$((h/2))
-declare -ar v=( [00]="\x83" [01]="\x8f" [03]="\x93"
-        [10]="\x9b" [11]="\x81" [12]="\x93"
-        [21]="\x97" [22]="\x83" [23]="\x9b"
-        [30]="\x97" [32]="\x8f" [33]="\x81" )
-
+declare -i f=75 s=12 r=3000 t=0 c=1 n=0 l=0 d=0
 OPTIND=1
-while getopts "f:s:r:h" arg; do
+while getopts "f:s:r:d:h" arg; do
 case $arg in
     f) ((f=($OPTARG>19 && $OPTARG<101)?$OPTARG:$f));;
     s) ((s=($OPTARG>4 && $OPTARG<16 )?$OPTARG:$s));;
     r) ((r=($OPTARG>0)?$OPTARG:$r));;
+    d) ((d=($OPTARG>0)?$OPTARG:$d));;
     h) echo -e "Usage: pipes [OPTION]..."
         echo -e "Creates an animation similar to the old \"pipes\" screensaver.\n"
         echo -e " -f [20-100]\tframerate (Default 75)."
         echo -e " -s [5-15]\tprobability of a straight fitting (Default 12)."
         echo -e " -r LIMIT\treset after x characters (Default 3000)."
+        echo -e " -d 0|1  \tForce draw within an 80x25 box. "
         echo -e " -h\t\thelp (This screen).\n"
         exit 0;;
     esac
 done
 
+
+# Brutal hack to force the size of the terminal for tmux panes that
+# won't seem to pass the new size
+if [ $d == 1 ]
+then
+    declare -ir w=80 h=25
+else
+    declare -ir w=$(tput cols) h=$(tput lines)
+fi
+
+declare -i x=$((w/2)) y=$((h/2))
+declare -ar v=( [00]="\x83" [01]="\x8f" [03]="\x93"
+        [10]="\x9b" [11]="\x81" [12]="\x93"
+        [21]="\x97" [22]="\x83" [23]="\x9b"
+        [30]="\x97" [32]="\x8f" [33]="\x81" )
 tput smcup
 tput reset
 tput civis

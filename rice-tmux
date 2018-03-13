@@ -10,14 +10,13 @@ tmux new-session -d -s 'rice_hack'
 
 tmux split-window -h 'bash' # top middle spooky
 
-tmux split-window -h 'bash' # top right pipes
+tmux split-window -h './pipes.sh -d 1 ' # top right pipes
 
-tmux split-window -h './pipes.sh'
 
 # Those are the three main columns, now split them horizontally
 
 tmux select-pane -t 0
-tmux split-window -v './hack.exe www.facebook.com'
+tmux split-window -v 'sleep 90; ./hack.exe www.facebook.com'
 tmux split-window -v 'htop'
 
 tmux select-pane -t 3
@@ -45,15 +44,20 @@ tmux resize-pane -L 12
 # Resize the spooky center pane
 tmux select-pane -t 3 
 tmux resize-pane -R 1
+
+# Respawn the top left pane to play the synth command
+tmux respawn-pane -t 0 -k 'play -c 2 -n synth brownnoise'
+
 # Respawn the pane to ensure it has the right dimensions
-#tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 10; lua ./3spooky.lua'
+tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 90; lua ./3spooky.lua'
 
-# Kill the pipes command then respawn the pane to get it to fill the
-# pane with drawn characters
-#tmux respawn-pane -t 5 -k 'echo STARTING PIPES; sleep 3; ./pipes.sh'
 
+# Toggle the 'full screen' size to trigger cmus to draw correctly
+tmux resize-pane -Z -t 7 
+sleep 3
 # Respawn the cmus pane to get it to draw correctly:
-#tmux respawn-pane -t 7 -k 'echo "STARTING CMUS"; sleep 3; cmus'
+tmux respawn-pane -t 7 -k 'echo "STARTING CMUS"; sleep 3; cmus'
+tmux resize-pane -Z -t 7 
 
 # -2 forces 256 colors 
 tmux -2 attach-session -d -t 'rice_hack'
