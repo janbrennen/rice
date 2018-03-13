@@ -80,7 +80,7 @@ Start a new gnome-terminal window
 
     These settings are for a 1600x900 screen resolution:
 
-    Create a new profile called "hacker", make the following settings:
+    Create a new profile called "hackermode", make the following settings:
     Font: monospace regular 9 point
     Color scheme: green on black
     Color palette:  xterm
