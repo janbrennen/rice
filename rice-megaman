@@ -53,7 +53,8 @@ tmux select-pane -t 3
 tmux resize-pane -R 1
 
 # Respawn the top left pane to play the synth command
-tmux respawn-pane -t 0 -k 'play -c 2 -n synth brownnoise'
+# For that 'riding the waves of cyberspace' feeling.
+tmux respawn-pane -t 0 -k 'play -n -n --combine merge synth brownnoise band -n 750 750 tremolo .1 40'
 
 # Respawn the pane to ensure it has the right dimensions
 tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 5; lua ./3spooky.lua'
