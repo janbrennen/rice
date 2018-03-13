@@ -6,17 +6,15 @@
 #
 # Built with tmux from source commit: 968296bb
 
-tmux new-session -d 'rice-hack'
+tmux new-session -d -s 'rice_hack'
 
-#tmux set-window-option remain-on-exit on
+tmux split-window -h 'bash' # top middle spooky
 
-tmux split-window -h 'play -c 2 -n synth brownnoise'
-
-#tmux split-window -h 'watch "echo spooky"'
-#tmux split-window -h 'lua ./3spooky.lua'
-tmux split-window -h 'bash'
+tmux split-window -h 'bash' # top right pipes
 
 tmux split-window -h './pipes.sh'
+
+# Those are the three main columns, now split them horizontally
 
 tmux select-pane -t 0
 tmux split-window -v './hack.exe www.facebook.com'
@@ -27,21 +25,7 @@ tmux split-window -v 'cmatrix'
 
 tmux select-pane -t 5
 tmux split-window -v 'vis'
-tmux split-window -v 'watch "echo cmus"'
-
-# Resize the hack pane 
-tmux select-pane -t 1
-tmux resize-pane -D 50
-tmux resize-pane -L 18
-
-#tmux select-pane -t 3
-tmux resize-pane -R 6
-
-# Resize the spooky center pane
-tmux select-pane -t 3 
-tmux resize-pane -R 1
-# Respawn the pane to ensure it has the right dimensions
-tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 3; lua ./3spooky.lua'
+tmux split-window -v 'bash'
 
 # At this point all panes are created with the following indexes:
 # 0 top left sox noise synthesis
@@ -53,10 +37,23 @@ tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 3; lua ./3spooky.lua'
 # 6 middle right vis
 # 7 bottom right cmus
 
+# Resize the hack pane 
+tmux select-pane -t 1
+tmux resize-pane -D 50
+tmux resize-pane -L 12
+
+# Resize the spooky center pane
+tmux select-pane -t 3 
+tmux resize-pane -R 1
+# Respawn the pane to ensure it has the right dimensions
+#tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 10; lua ./3spooky.lua'
+
 # Kill the pipes command then respawn the pane to get it to fill the
 # pane with drawn characters
-tmux respawn-pane -t 5 -k 'echo STARTING PIPES; sleep 3; ./pipes.sh'
+#tmux respawn-pane -t 5 -k 'echo STARTING PIPES; sleep 3; ./pipes.sh'
 
-tmux -2 attach-session -d
+# Respawn the cmus pane to get it to draw correctly:
+#tmux respawn-pane -t 7 -k 'echo "STARTING CMUS"; sleep 3; cmus'
 
-
+# -2 forces 256 colors 
+tmux -2 attach-session -d -t 'rice_hack'
