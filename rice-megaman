@@ -4,6 +4,9 @@
 # Monospace Regular font at size 9 in full screen. No menubars, no
 # titlebars.
 #
+# For maximum effect, create a shortcut key combo on your linux desktop that
+# starts a new gnome-terminal in full screen mode and then executes this script
+#
 # Built with tmux from source commit: 968296bb
 
 tmux new-session -d -s 'rice_hack_megaman'
@@ -15,7 +18,7 @@ tmux split-window -h './pipes.sh -d 1 ' # top right pipes
 # Those are the three main columns, now split them horizontally
 
 tmux select-pane -t 0
-tmux split-window -v 'sleep 500; ./hack.exe www.facebook.com'
+tmux split-window -v 'sleep 5; ./hack.exe www.facebook.com'
 tmux split-window -v 'htop'
 
 tmux select-pane -t 3
@@ -24,7 +27,10 @@ tmux split-window -v 'cmatrix'
 tmux select-pane -t 5
 tmux split-window -v 'vis'
 tmux split-window -v './youtube-mplayer.sh "https://www.youtube.com/watch?v=m1i00Eb4wUE"' 
-tmux split-window -v 'cat ./top_half_megaman.txt; sleep 800'
+tmux resize-pane -U 10
+
+# This split sleeps forever so we don't have to set the global exit on wait
+tmux split-window -v 'cat ./top_half_megaman.txt; sleep 8000000000'
 
 # At this point all panes are created with the following indexes:
 # 0 top left sox noise synthesis
@@ -49,14 +55,7 @@ tmux resize-pane -R 1
 tmux respawn-pane -t 0 -k 'play -c 2 -n synth brownnoise'
 
 # Respawn the pane to ensure it has the right dimensions
-tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 500; lua ./3spooky.lua'
-
-# Toggle the 'full screen' size to trigger cmus to draw correctly, then
-# respawn the cmus pane to get it to draw correctly:
-#tmux resize-pane -Z -t 7 
-#sleep 3
-#tmux respawn-pane -t 7 -k 'echo "STARTING CMUS"; sleep 3; cmus'
-#tmux resize-pane -Z -t 7 
+tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 5; lua ./3spooky.lua'
 
 # -2 forces 256 colors 
 tmux -2 attach-session -d -t 'rice_hack_megaman'

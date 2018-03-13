@@ -4,6 +4,9 @@
 # Monospace Regular font at size 9 in full screen. No menubars, no
 # titlebars.
 #
+# For maximum effect, create a shortcut key combo on your linux desktop that
+# starts a new gnome-terminal in full screen mode and then executes this script
+#
 # Built with tmux from source commit: 968296bb
 
 tmux new-session -d -s 'rice_hack'
