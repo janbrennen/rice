@@ -10,7 +10,7 @@ tmux new-session -d -s 'rice_hack'
 
 tmux split-window -h 'bash' # top middle spooky
 
-tmux split-window -h './pipes.sh -d 1 ' # top right pipes
+tmux split-window -h '~/projects/pulsemixer/pulsemixer' # top right pipes
 
 # Those are the three main columns, now split them horizontally
 

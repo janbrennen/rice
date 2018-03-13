@@ -47,3 +47,8 @@ Prerequisites and installation instructions for Fedora Core 26.
 
 Example scripts for configuring starting live interactions with a single
 shell file. 
+
+
+![Daily usage Example](docs/rice_tmux_screenshot.png)
+![Super hacker mode](docs/rice_megaman_screenshot.png)
+![Hacking is needed](docs/rice_megaman.gif)
