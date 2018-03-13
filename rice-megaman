@@ -5,7 +5,8 @@
 # titlebars.
 #
 # For maximum effect, create a shortcut key combo on your linux desktop that
-# starts a new gnome-terminal in full screen mode and then executes this script
+# starts a new gnome-terminal in full screen mode and then executes this
+# script like that shown in rice-fullscreen.
 #
 # Built with tmux from source commit: 968296bb
 
