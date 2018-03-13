@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# This is designed to be run on a 1600x900 screen in gnome-terminal with
+# Monospace Regular font at size 9 in full screen. No menubars, no
+# titlebars.
+#
+# Built with tmux from source commit: 968296bb
+
+tmux new-session -d 'rice-hack'
+
+#tmux set-window-option remain-on-exit on
+
+tmux split-window -h 'play -c 2 -n synth brownnoise'
+
+#tmux split-window -h 'watch "echo spooky"'
+#tmux split-window -h 'lua ./3spooky.lua'
+tmux split-window -h 'bash'
+
+tmux split-window -h './pipes.sh'
+
+tmux select-pane -t 0
+tmux split-window -v './hack.exe www.facebook.com'
+tmux split-window -v 'htop'
+
+tmux select-pane -t 3
+tmux split-window -v 'cmatrix'
+
+tmux select-pane -t 5
+tmux split-window -v 'vis'
+tmux split-window -v 'watch "echo cmus"'
+
+# Resize the hack pane 
+tmux select-pane -t 1
+tmux resize-pane -D 50
+tmux resize-pane -L 18
+
+#tmux select-pane -t 3
+tmux resize-pane -R 6
+
+# Resize the spooky center pane
+tmux select-pane -t 3 
+tmux resize-pane -R 1
+# Respawn the pane to ensure it has the right dimensions
+tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 3; lua ./3spooky.lua'
+
+# At this point all panes are created with the following indexes:
+# 0 top left sox noise synthesis
+# 1 middle left hack.exe
+# 2 bottom left htop
+# 3 top middle spooky
+# 4 top bottom cmatrix
+# 5 top right pipes
+# 6 middle right vis
+# 7 bottom right cmus
+
+# Kill the pipes command then respawn the pane to get it to fill the
+# pane with drawn characters
+tmux respawn-pane -t 5 -k 'echo STARTING PIPES; sleep 3; ./pipes.sh'
+
+tmux -2 attach-session -d
+
+
