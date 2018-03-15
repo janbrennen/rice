@@ -38,3 +38,15 @@ An upgraded version of hack.exe
 - 100% stupid
 
 Written in C, compile with -lpthread.
+
+**INSTALL.md**
+
+Prerequisites and installation instructions for Fedora Core 26.
+
+**Tmux-preload**
+
+Example scripts for configuring starting live interactions with a single
+shell file. 
+
+![Hacking is needed](docs/rice_megaman.gif)
+![Daily usage Example](docs/rice_tmux_screenshot.png)

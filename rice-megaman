@@ -1,0 +1,63 @@
+#!/bin/sh
+#
+# This is designed to be run on a 1600x900 screen in gnome-terminal with
+# Monospace Regular font at size 9 in full screen. No menubars, no
+# titlebars.
+#
+# For maximum effect, create a shortcut key combo on your linux desktop that
+# starts a new gnome-terminal in full screen mode and then executes this
+# script like that shown in rice-fullscreen.
+#
+# Built with tmux from source commit: 968296bb
+
+tmux new-session -d -s 'rice_hack_megaman'
+
+tmux split-window -h 'bash' # top middle spooky
+
+tmux split-window -h './pipes.sh -d 1 ' # top right pipes
+
+# Those are the three main columns, now split them horizontally
+
+tmux select-pane -t 0
+tmux split-window -v 'sleep 1; ./hack.exe www.facebook.com'
+tmux split-window -v 'htop'
+
+tmux select-pane -t 3
+tmux split-window -v 'cmatrix'
+
+tmux select-pane -t 5
+tmux split-window -v 'vis'
+tmux split-window -v './youtube-mplayer.sh "https://www.youtube.com/watch?v=m1i00Eb4wUE"' 
+tmux resize-pane -U 10
+
+# This split sleeps forever so we don't have to set the global exit on wait
+tmux split-window -v 'cat ./top_half_megaman.txt; sleep 8000000000'
+
+# At this point all panes are created with the following indexes:
+# 0 top left sox noise synthesis
+# 1 middle left hack.exe
+# 2 bottom left htop
+# 3 top middle spooky
+# 4 top bottom cmatrix
+# 5 top right pipes
+# 6 middle right vis
+# 7 bottom right cmus
+
+# Resize the hack pane 
+tmux select-pane -t 1
+tmux resize-pane -D 50
+tmux resize-pane -L 12
+
+# Resize the spooky center pane
+tmux select-pane -t 3 
+tmux resize-pane -R 1
+
+# Respawn the top left pane to play the synth command
+# For that 'riding the waves of cyberspace' feeling.
+tmux respawn-pane -t 0 -k 'play -n -n --combine merge synth brownnoise band -n 750 750 tremolo .1 40'
+
+# Respawn the pane to ensure it has the right dimensions
+tmux respawn-pane -t 3 -k 'echo STARTING SPOOKY; sleep 1; lua ./3spooky.lua'
+
+# -2 forces 256 colors 
+tmux -2 attach-session -d -t 'rice_hack_megaman'

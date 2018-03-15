@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Update your full path below to point to the appropriate file
+#
+# Then create a system wide shortcut to map to ctrl-alt-shift-h for
+# hacker mode. hackermode profile is xterm palette, green on black,
+# monospace regular 9 point font size, which looks good on 1600x900
+# systems
+cd /home/nharrington/projects/rice
+exec gnome-terminal --window-with-profile=hackermode \
+                    --full-screen -- "./rice-megaman"
