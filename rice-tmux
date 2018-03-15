@@ -6,7 +6,16 @@
 #
 # Built with tmux from source commit: 968296bb
 
-tmux new-session -d -s 'rice_hack'
+SESSIONNAME=rice_hack
+
+CHECK=$( tmux has-session -t $SESSIONNAME )
+
+if [[ $? -eq 0 ]] ; then
+    tmux -2 attach-session -d -t "$SESSIONNAME"
+    exit
+fi
+
+tmux new-session -d -s $SESSIONNAME
 
 tmux split-window -h 'bash' # top middle spooky
 
@@ -59,4 +68,4 @@ tmux respawn-pane -t 7 -k 'echo "STARTING CMUS"; sleep 3; cmus'
 tmux resize-pane -Z -t 7 
 
 # -2 forces 256 colors 
-tmux -2 attach-session -d -t 'rice_hack'
+tmux -2 attach-session -d -t $SESSIONNAME
